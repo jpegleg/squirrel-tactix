@@ -5,7 +5,6 @@ use serde_json::json;
 
 #[get("/users")]
 async fn find_all() -> Result<HttpResponse, CustomError> {
-    println!("FUCK OFF");
     let users = Users::find_all()?;
     Ok(HttpResponse::Ok().json(users))
 }
@@ -18,7 +17,6 @@ async fn find(id: web::Path<i32>) -> Result<HttpResponse, CustomError> {
 
 #[post("/users")]
 async fn create(user: web::Json<User>) -> Result<HttpResponse, CustomError> {
-    println!("PLEASE");
     let user = Users::create(user.into_inner())?;
     Ok(HttpResponse::Ok().json(user))
 }
