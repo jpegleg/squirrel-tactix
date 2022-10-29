@@ -1,2 +1,7 @@
-# squirrel-tactix
-diesel postgres via actix API
+# squirrel-tactix 🐿️ 
+
+An Actix API microservice that uses Diesel Postgresql.
+
+## Example requests
+
+WIP
