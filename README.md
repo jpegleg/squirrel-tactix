@@ -72,6 +72,7 @@ $ curl -X DELETE -d @updatepw.json -H "Content-Type: application/json" localhost
 ## tips to avoid common mistakes
 
 - ensure that the database credentials and network connectivity are in place first
+- ensure that the table and schema in postgres (initial migration, etc) have been set up
 - ensure that the JSON used matches the schema used in postgres and in the code.
 
 API HTTP body JSON:
