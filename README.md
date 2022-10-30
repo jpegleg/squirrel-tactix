@@ -36,6 +36,6 @@ $ curl -H "Content-Type: application/json" localhost:8007/users/1
 
 Insert new data to postgres from JSON:
 ```
-$ curl -vv -X POST -d @add.json -H "Content-Type: application/json" localhost:8007/users
+$ curl -X POST -d @add.json -H "Content-Type: application/json" localhost:8007/users
 {"id":3,"username":"slanky","email":"slippy@no-reply","password":"be6c20a8a80de1d70a95df3abf17c490e119074db020707e5d1a58255657f372336885580bfb1ae2acfced7d3170d0691669be89c7c266b8c8990e0b766c3ab0"}
 ````
