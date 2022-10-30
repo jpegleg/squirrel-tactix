@@ -40,6 +40,15 @@ $ curl -H "Content-Type: application/json" localhost:8007/users/1
 {"id":1,"username":"bob","email":"bob@no-reply","password":"3d172959deda021453161031486f7e3126f730d80f1f7cb447edbe36777ff0c4113b0508e3cb87c27784ff0e84cb96eb7727a6e6bd597be0bc19436e700eafff"}
 ```
 
+Any headers will be logged, so we can pass a transaction id:
+
+```
+$ curl -H "Content-Type: application/json" -H "tid: 1c9bda74-ff98-4aef-ac7a-d427b2900856" localhost:8007/users/1
+{"id":1,"username":"bob","email":"bob@no-reply","password":"3d172959deda021453161031486f7e3126f730d80f1f7cb447edbe36777ff0c4113b0508e3cb87c27784ff0e84cb96eb7727a6e6bd597be0bc19436e700eafff"}
+```
+
+Any data we want to associate with the request can be set as a header, however such data is optional.
+
 Insert new data to postgres from JSON:
 ```
 $ curl -X POST -d @add.json -H "Content-Type: application/json" localhost:8007/users
