@@ -11,7 +11,7 @@ An Actix API microservice that uses Diesel Postgresql.
 
 ## credentials, diesel migration, and initialization
 
-Current version has a `.env` file that contains the database credentials. Example `.env` file:
+Current version has a `.env` file that contains the database credentials. Example `.env` file that runs on the loopback device:
 
 ```
 RUST_LOG=squirrel_tactix=info,actix=info,diesel_migrations=info
