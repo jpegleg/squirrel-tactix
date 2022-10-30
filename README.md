@@ -2,6 +2,10 @@
 
 An Actix API microservice that uses Diesel Postgresql.
 
+Runs as a cloud-native microservice or the rust binary can be run however.
+
+If we are running it in a VM, we could put it behind HAProxy, for example.
+
 ## headers logged, pass UUID or transaction id in header for correlation
 
 ```
