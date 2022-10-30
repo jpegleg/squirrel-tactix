@@ -12,7 +12,7 @@ async fn find_all(req: HttpRequest) -> Result<HttpResponse, CustomError> {
     let peer = req.peer_addr();
     let requ = req.headers();
     let readi: DateTime<Utc> = Utc::now();
-    println!("[{:?} INFO ] - squirrel tActix - /users POST function request - from {:?} - {:?}", readi, peer, requ);
+    println!("[{:?} INFO ] - squirrel tActix - /users GET function request - from {:?} - {:?}", readi, peer, requ);
     let users = Users::find_all()?;
     Ok(HttpResponse::Ok().json(users))
 }
@@ -44,8 +44,15 @@ async fn create(req: HttpRequest, user: web::Json<User>) -> Result<HttpResponse,
 async fn update(
     id: web::Path<i32>,
     user: web::Json<User>,
+    req: HttpRequest,
 ) -> Result<HttpResponse, CustomError> {
+    let peer = req.peer_addr();
+    let requ = req.headers();
     let user = Users::update(id.into_inner(), user.into_inner())?;
+    let readi: DateTime<Utc> = Utc::now();
+    println!("[{:?} INFO ] - squirrel tActix - /users/x (update) PUT function request - from {:?} - {:?}", readi, peer, requ);
+
+
     Ok(HttpResponse::Ok().json(user))
 }
 
