@@ -2,7 +2,8 @@
 
 An Actix API microservice that uses Diesel Postgresql.
 
-Runs as a cloud-native microservice or the rust binary can be run however.
+Squirrel tActix is an async actix backend designed for JSON-baesd database management.
+It runs as a cloud-native microservice in a tiny OCI image (see Dockerfile) or the rust binary can be run however.
 
 If we are running it in a VM, we could put it behind HAProxy, for example.
 
