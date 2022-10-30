@@ -2,6 +2,40 @@
 
 An Actix API microservice that uses Diesel Postgresql.
 
+## credentials, diesel migration, and initialization
+
+Current version has a `.env` file that contains the database credentials. Example `.env` file:
+
+```
+RUST_LOG=squirrel_tactix=info,actix=info,diesel_migrations=info
+DATABASE_URL=postgres://postgres:mypassword@localhost:5432
+HOST=127.0.0.1
+PORT=8007
+```
+
+Diesel is an ORM and has migrations. We can set up diesel command line to run migrations.
+
+```
+cargo install diesel_cli --no-default-features --features postgres
+diesel setup
+diesel migration generate create_users
+# create tables and insert initial data etc
+
+```
+
+
 ## Example requests
 
-WIP
+
+Query for a user with the id value of 1 in postgres:
+
+```
+$ curl -H "Content-Type: application/json" localhost:8007/users/1
+{"id":1,"username":"bob","email":"bob@no-reply","password":"3d172959deda021453161031486f7e3126f730d80f1f7cb447edbe36777ff0c4113b0508e3cb87c27784ff0e84cb96eb7727a6e6bd597be0bc19436e700eafff"}
+```
+
+Insert new data to postgres from JSON:
+```
+$ curl -vv -X POST -d @add.json -H "Content-Type: application/json" localhost:8007/users
+{"id":3,"username":"slanky","email":"slippy@no-reply","password":"be6c20a8a80de1d70a95df3abf17c490e119074db020707e5d1a58255657f372336885580bfb1ae2acfced7d3170d0691669be89c7c266b8c8990e0b766c3ab0"}
+````
