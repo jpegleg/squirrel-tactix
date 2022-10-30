@@ -39,6 +39,19 @@ $ curl -X POST -d @add.json -H "Content-Type: application/json" localhost:8007/u
 {"id":3,"username":"slanky","email":"slippy@no-reply","password":"be6c20a8a80de1d70a95df3abf17c490e119074db020707e5d1a58255657f372336885580bfb1ae2acfced7d3170d0691669be89c7c266b8c8990e0b766c3ab0"}
 ````
 
+Update existing data to postgres from JSON:
+```
+$ curl -X PUT -d @updatepw.json -H "Content-Type: application/json" localhost:8007/users/3
+{"id":3,"username":"slanky","email":"slippy@no-reply","password":"85c6e5caccd395656090108e7910f31004f89e30b85ecab8b0fc68cd292541796e5a49803dc43641efff22c1252b190adcd7080e1dda725e7f77acb0ef22a073"}
+````
+
+Delete existing data to postgres from JSON:
+```
+$ curl -X DELETE -d @updatepw.json -H "Content-Type: application/json" localhost:8007/users/3
+{"id":3,"username":"slanky","email":"slippy@no-reply","password":"85c6e5caccd395656090108e7910f31004f89e30b85ecab8b0fc68cd292541796e5a49803dc43641efff22c1252b190adcd7080e1dda725e7f77acb0ef22a073"}
+````
+
+
 
 ## tips to avoid common mistakes
 
