@@ -76,7 +76,7 @@ table! {
 ```
 postgres schema:
 ```
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS users (
             id              SERIAL PRIMARY KEY,
             username        VARCHAR UNIQUE NOT NULL,
             password        VARCHAR NOT NULL,
