@@ -48,7 +48,7 @@ $ curl -X PUT -d @updatepw.json -H "Content-Type: application/json" localhost:80
 Delete existing data to postgres from JSON:
 ```
 $ curl -X DELETE -d @updatepw.json -H "Content-Type: application/json" localhost:8007/users/3
-{"id":3,"username":"slanky","email":"slippy@no-reply","password":"85c6e5caccd395656090108e7910f31004f89e30b85ecab8b0fc68cd292541796e5a49803dc43641efff22c1252b190adcd7080e1dda725e7f77acb0ef22a073"}
+{"deleted":1}
 ````
 
 
