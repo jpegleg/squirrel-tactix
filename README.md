@@ -2,6 +2,13 @@
 
 An Actix API microservice that uses Diesel Postgresql.
 
+## headers logged, pass UUID or transaction id in header for correlation
+
+```
+[2022-10-30T06:59:44.250973553Z INFO ] - squirrel tActix - /users/2 GET function request - from Some(192.168.1.121:38086) - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("0"), "host": One("service-0:8007"), "user-agent": One("curl/7.81.0"), "txid": One("1c9bda74-ff98-4aef-ac7a-d427b2900856"), "content-type": One("application/json")} }
+
+```
+
 ## credentials, diesel migration, and initialization
 
 Current version has a `.env` file that contains the database credentials. Example `.env` file:
