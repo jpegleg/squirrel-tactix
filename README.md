@@ -20,12 +20,11 @@ cargo install diesel_cli --no-default-features --features postgres
 diesel setup
 diesel migration generate create_users
 # create tables and insert initial data etc
-
+diesel migrations run
 ```
 
 
 ## Example requests
-
 
 Query for a user with the id value of 1 in postgres:
 
@@ -39,3 +38,13 @@ Insert new data to postgres from JSON:
 $ curl -X POST -d @add.json -H "Content-Type: application/json" localhost:8007/users
 {"id":3,"username":"slanky","email":"slippy@no-reply","password":"be6c20a8a80de1d70a95df3abf17c490e119074db020707e5d1a58255657f372336885580bfb1ae2acfced7d3170d0691669be89c7c266b8c8990e0b766c3ab0"}
 ````
+
+
+## tips to avoid common mistakes
+
+- ensure that the database credentials and network connectivity are in place first
+- ensure that the JSON used matches the schema used in postgres and in the code.
+
+```
+{"username":"slanky","email":"slippy@no-reply","password":"3d172959deda021453161031486f7e3126f730d80f1f7cb447edbe36777ff0c4113b0508e3cb87c27784ff0e84cb96eb7727a6e6bd597be0bc19436e700eafff"}
+```
