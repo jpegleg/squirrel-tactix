@@ -70,9 +70,27 @@ Delete existing data to postgres from JSON:
 ```
 $ curl -X DELETE -d @updatepw.json -H "Content-Type: application/json" localhost:8007/users/3
 {"deleted":1}
-````
+```
 
+Example using a random value as the transaction id header and sending a postgres health check request:
+```
+curl -X GET -H "tid: $(cat /dev/urandom | head -n12 | b2sum | cut -c1-26)" -H "Content-Type: application/json" -d @test.json http://localhost:8007/health
+"RECV"
+```
 
+And the corresponding STDOUT on the server side, note the event correlation with the header data:
+```
+[2022-11-02T03:38:19.486992001Z INFO ] - api-backend - /health GET (health check) request - from Some(127.0.0.1:41426) - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("196"), "host": One("localhost:8007"), "user-agent": One("curl/7.81.0"), "content-type": One("application/json"), "tid": One("0033929ba084f9d1fc9e89b5b6")} }
+[2022-11-02T03:38:19.487641671Z INFO ] - api-backend - /health GET (health check) response OK - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("196"), "host": One("localhost:8007"), "user-agent": One("curl/7.81.0"), "content-type": One("application/json"), "tid": One("0033929ba084f9d1fc9e89b5b6")} }
+```
+
+If the postgres query fails, then the server will eventually respond with an internal server error JSON from the error handler.
+If the postgres query succeeds, then the health check response is the string "RECV".
+Squirrel-tactix does not crash if postgres is taken offline, however postgres connection pool must be able to be built to initialize.
+We can take down postgres for maintenance, and squirrel tactix will still hold requests until the timeout (default server timeout is 30 seconds),
+which if 30 seconds is passed the error JSON is sent to the client and the CRUD operation is not run. If postgres is down for less than
+30 seconds and a request comes through, the request will succeed on the server side as long as that client is still listening: client software
+with shorter timeouts than 30 seconds set can get a timeout instead of the error JSON.
 
 ## tips to avoid common mistakes
 
