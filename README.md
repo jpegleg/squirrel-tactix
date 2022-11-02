@@ -74,14 +74,14 @@ $ curl -X DELETE -d @updatepw.json -H "Content-Type: application/json" localhost
 
 Example using a random value as the transaction id header and sending a postgres health check request:
 ```
-curl -X GET -H "tid: $(cat /dev/urandom | head -n12 | b2sum | cut -c1-26)" -H "Content-Type: application/json" -d @test.json http://localhost:8007/health
+curl -X GET -H "tid: $(cat /dev/urandom | head -n12 | b2sum | cut -c1-26)" http://localhost:8007/health
 "RECV"
 ```
 
 And the corresponding STDOUT on the server side, note the event correlation with the header data:
 ```
-[2022-11-02T03:38:19.486992001Z INFO ] - squirrel-tactix - /health GET (health check) request - from Some(127.0.0.1:41426) - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("196"), "host": One("localhost:8007"), "user-agent": One("curl/7.81.0"), "content-type": One("application/json"), "tid": One("0033929ba084f9d1fc9e89b5b6")} }
-[2022-11-02T03:38:19.487641671Z INFO ] - squirrel-tactix - /health GET (health check) response OK - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("196"), "host": One("localhost:8007"), "user-agent": One("curl/7.81.0"), "content-type": One("application/json"), "tid": One("0033929ba084f9d1fc9e89b5b6")} }
+[2022-11-02T03:38:19.486992001Z INFO ] - squirrel-tactix - /health GET (health check) request - from Some(127.0.0.1:41426) - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("196"), "host": One("localhost:8007"), "user-agent": One("curl/7.81.0"), "tid": One("0033929ba084f9d1fc9e89b5b6")} }
+[2022-11-02T03:38:19.487641671Z INFO ] - squirrel-tactix - /health GET (health check) response OK - HeaderMap { inner: {"accept": One("*/*"), "content-length": One("196"), "host": One("localhost:8007"), "user-agent": One("curl/7.81.0"), "tid": One("0033929ba084f9d1fc9e89b5b6")} }
 ```
 
 If the postgres query fails, then the server will eventually respond with an internal server error JSON from the error handler.
