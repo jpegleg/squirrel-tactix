@@ -27,7 +27,7 @@ PORT=8007
 
 Diesel is an ORM and has migrations. We can set up diesel command line to run migrations.
 
-Dependencies for diesel_cli build include `postgresql-all`, `librust-openssl-dev`, `librust-openssl-sys`, and `gcc`.
+Dependencies for diesel_cli build include `postgresql-all`, `librust-openssl-dev`, and `gcc`.
 
 ```
 cargo install diesel_cli --no-default-features --features postgres
