@@ -34,7 +34,7 @@ cargo install diesel_cli --no-default-features --features postgres
 diesel setup
 diesel migration generate create_users
 # create tables and insert initial data etc
-diesel migrations run
+diesel migration run
 ```
 
 
