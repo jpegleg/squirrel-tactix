@@ -1,7 +1,5 @@
 # squirrel-tactix 🐿️ 
 
-## This build is failing now without changing the Cargo.toml. A fix might get made.
-
 An Actix API microservice that uses Diesel Postgresql.
 
 ## See https://github.com/jpegleg/flying-squirrel-tactix for the rustls (TLS) version
@@ -100,6 +98,7 @@ with shorter timeouts than 30 seconds set can get a timeout instead of the error
 
 ## tips to avoid common mistakes
 
+- ensure that the dependecies are properly installed on the compile host (example: postgresql-all librust-openssl-dev gcc)
 - ensure that the database credentials and network connectivity are in place first
 - ensure that the table and schema in postgres (initial migration, etc) have been set up
 - ensure that the JSON used matches the schema used in postgres and in the code.
